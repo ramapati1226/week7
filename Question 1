@@ -1,0 +1,18 @@
+def arrangement(r,b,g,last):
+    if r<0 or b<0 or g<0:
+        return 0
+    if r==0 and b==0 and g==0:
+        return 1
+    if last=='r':
+        return arrangement(r,b-1,g,'b')+arrangement(r,b,g-1,'g')
+    if last=='b':
+        return arrangement(r-1,b,g,'r')+arrangement(r,b,g-1,'g')
+    if last=='g':
+        return arrangement(r-1,b,g,'r')+arrangement(r,b-1,g,'b')
+def Totalway(r,b,g):
+    return arrangement(r-1,b,g,'r')+arrangement(r,b-1,g,'b')+arrangement(r,b,g-1,'g')
+if  __name__=='__main__':
+    r=int(input("Enter number of red balls : "))
+    b=int(input("Enter number of blue balls : "))
+    g=int(input("Enter number of green balls : "))
+    print("Total number of arrangements are ",Totalway(r,b,g))
